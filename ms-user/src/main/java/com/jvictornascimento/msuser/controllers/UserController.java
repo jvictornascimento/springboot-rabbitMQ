@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
@@ -18,5 +20,9 @@ public class UserController {
     @GetMapping
     public ResponseEntity<UserDto> getUserByEmail(@RequestParam String email){
         return ResponseEntity.ok(service.findByEmail(email));
+    }
+    @GetMapping(value = "/list")
+    public ResponseEntity<List<UserDto>> getAll(){
+        return ResponseEntity.ok(service.getAll());
     }
 }
